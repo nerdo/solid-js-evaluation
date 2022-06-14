@@ -1,0 +1,23 @@
+.TodoItem {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  grid-template-areas: 'toggle label actions';
+}
+
+.TodoItem input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
+  border: none;
+  padding: 2px;
+}
+
+.label {
+  grid-area: label;
+}
+
+.toggle {
+  grid-area: toggle;
+}
+
+.actions {
+  grid-area: actions;
+}
