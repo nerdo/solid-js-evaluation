@@ -33,6 +33,7 @@ const App: Component = () => {
 
   return (
     <div class={styles.App}>
+      <h1 class="text-3xl font-bold underline">Hello, Tailwind!</h1>
       <button
         onClick={() => setTodos(todos.length, { completed: false, label: `${todos.length + 1}${suffixFor(todos.length + 1)} New Todo` })}
       >
