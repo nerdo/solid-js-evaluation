@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   grid-template-areas: 'toggle label actions';
+  gap: 5px;
 }
 
 .TodoItem input:not([type='checkbox']):not([type='radio']) {
