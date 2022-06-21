@@ -70,6 +70,12 @@ describe('menu', () => {
         menuApi.setSelection('B')
 
         expect(menu.selection).toBe('B')
+        
+        menuApi.setSelection('D')
+        expect(menu.selection).toBe('D')
+        
+        menuApi.setSelection(void 0)
+        expect(menu.selection).toBeUndefined()
       })
     })
   })
