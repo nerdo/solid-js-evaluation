@@ -20,7 +20,7 @@ export const makeMenuStore = <O, S = O>(settings: MenuStoreSettings<O, S>) => {
 
   const menuApi = {
     setMenu: setState,
-    setSelection(selection: S) {
+    setSelection(selection?: S) {
       setState('selection', selection)
     }
   }
