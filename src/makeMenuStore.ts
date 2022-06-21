@@ -12,7 +12,7 @@ export interface MenuStoreSettings<O, S = O> {
   selection?: S
 }
 
-export const makeMenuStore = <T>(settings: MenuStoreSettings<T>) => {
+export const makeMenuStore = <O, S = O>(settings: MenuStoreSettings<O, S>) => {
   return createStore({
     options: settings.options,
     selection: settings.selection
