@@ -9,6 +9,7 @@ describe('menu', () => {
         'B',
         'C'
       ]
+
       const [menu, _setMenu] = makeMenuStore({ options })
 
       expect(menu.options.length).toBe(3)
@@ -23,6 +24,7 @@ describe('menu', () => {
         'B',
         'C'
       ]
+
       const [menu, _setMenu] = makeMenuStore({ options, selection: 'C' })
 
       expect(menu.selection).toBe('C')
@@ -34,9 +36,23 @@ describe('menu', () => {
         'B',
         'C'
       ]
+
       const [menu, _setMenu] = makeMenuStore({ options, selection: 'D' })
 
       expect(menu.selection).toBe('D')
+    })
+
+    it('can be initialized with a selection array', () => {
+      const options = [
+        'A',
+        'B',
+        'C'
+      ]
+      const selection = ['A', 'B']
+
+      const [menu, _setMenu] = makeMenuStore({ options, selection })
+
+      expect(menu.selection).toBe(selection)
     })
   })
 })
