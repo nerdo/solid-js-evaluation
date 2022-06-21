@@ -56,6 +56,29 @@ describe('menu', () => {
     })
   })
 
+  describe('working with objects', () => {
+    it('should accept object options and object selections', () => {
+      const a = {
+        id: 1,
+        label: 'A'
+      }
+      const b = {
+        id: 2,
+        label: 'B'
+      }
+      const c = {
+        id: 3,
+        label: 'C'
+      }
+      const options = [a, b, c]
+
+      const [menu, _menuApi] = makeMenuStore({ options, selection: b })
+
+      expect(menu.options).toBe(options)
+      expect(menu.selection).toBe(b)
+    })
+  })
+
   describe('api', () => {
     describe('setSelection()', () => {
       it('should set the selection', () => {
@@ -70,10 +93,10 @@ describe('menu', () => {
         menuApi.setSelection('B')
 
         expect(menu.selection).toBe('B')
-        
+
         menuApi.setSelection('D')
         expect(menu.selection).toBe('D')
-        
+
         menuApi.setSelection(void 0)
         expect(menu.selection).toBeUndefined()
       })
