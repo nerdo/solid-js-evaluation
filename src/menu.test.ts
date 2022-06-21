@@ -9,7 +9,7 @@ describe('menu', () => {
         'B',
         'C'
       ]
-      const menu = makeMenuStore({ options })
+      const [menu, _setMenu] = makeMenuStore({ options })
 
       expect(menu.options.length).toBe(3)
       expect(menu.options[0]).toBe('A')
@@ -23,7 +23,7 @@ describe('menu', () => {
         'B',
         'C'
       ]
-      const menu = makeMenuStore({ options, selection: 'C' })
+      const [menu, _setMenu] = makeMenuStore({ options, selection: 'C' })
 
       expect(menu.selection).toBe('C')
     })
@@ -34,7 +34,7 @@ describe('menu', () => {
         'B',
         'C'
       ]
-      const menu = makeMenuStore({ options, selection: 'D' })
+      const [menu, _setMenu] = makeMenuStore({ options, selection: 'D' })
 
       expect(menu.selection).toBe('D')
     })

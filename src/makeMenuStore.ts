@@ -13,12 +13,10 @@ export interface MenuStoreSettings<O, S = O> {
 }
 
 export const makeMenuStore = <T>(settings: MenuStoreSettings<T>) => {
-  const [menu, _setMenu] = createStore({
+  return createStore({
     options: settings.options,
     selection: settings.selection
   })
-
-  return menu
 }
 
 export default makeMenuStore
