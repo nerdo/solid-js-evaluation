@@ -10,7 +10,7 @@ describe('menu', () => {
         'C'
       ]
 
-      const [menu, _setMenu] = makeMenuStore({ options })
+      const [menu, _menuApi] = makeMenuStore({ options })
 
       expect(menu.options.length).toBe(3)
       expect(menu.options[0]).toBe('A')
@@ -25,7 +25,7 @@ describe('menu', () => {
         'C'
       ]
 
-      const [menu, _setMenu] = makeMenuStore({ options, selection: 'C' })
+      const [menu, _menuApi] = makeMenuStore({ options, selection: 'C' })
 
       expect(menu.selection).toBe('C')
     })
@@ -37,7 +37,7 @@ describe('menu', () => {
         'C'
       ]
 
-      const [menu, _setMenu] = makeMenuStore({ options, selection: 'D' })
+      const [menu, _menuApi] = makeMenuStore({ options, selection: 'D' })
 
       expect(menu.selection).toBe('D')
     })
@@ -50,9 +50,27 @@ describe('menu', () => {
       ]
       const selection = ['A', 'B']
 
-      const [menu, _setMenu] = makeMenuStore({ options, selection })
+      const [menu, _menuApi] = makeMenuStore({ options, selection })
 
       expect(menu.selection).toBe(selection)
+    })
+  })
+
+  describe('api', () => {
+    describe('setSelection()', () => {
+      it('should set the selection', () => {
+        const options = [
+          'A',
+          'B',
+          'C'
+        ]
+        const [menu, menuApi] = makeMenuStore({ options })
+
+        expect(menu.selection).toBeUndefined()
+        menuApi.setSelection('B')
+
+        expect(menu.selection).toBe('B')
+      })
     })
   })
 })
