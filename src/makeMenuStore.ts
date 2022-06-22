@@ -1,6 +1,8 @@
 import { createStore } from 'solid-js/store'
 
-export interface MenuStoreSettings<O, S = O> {
+const noop = () => { }
+
+export interface MenuState<O, S = O> {
   /**
    * Available menu options.
    */
@@ -12,10 +14,26 @@ export interface MenuStoreSettings<O, S = O> {
   selection?: S
 }
 
-export const makeMenuStore = <O, S = O>(settings: MenuStoreSettings<O, S>) => {
+export interface MenuStoreSettings<O, S = O> {
+  /**
+   * Should map the selection to an option or options.
+   * 
+   * This gets called when the optionSelection property is read from MenuState.
+   *
+   * It is meant as a way to look up the option(s) when the options 
+   * are objects and the selection represents uniuque identifier(s) for an options.
+   */
+  optionSelectionHandler?: ((menu: MenuState<O, S>) => O) | ((menu: MenuState<O, S>) => O[])
+}
+
+export const makeMenuStore = <O, S = O>(initialState: MenuState<O, S>, settings?: MenuStoreSettings<O, S>) => {
   const [menu, setState] = createStore({
-    options: settings.options,
-    selection: settings.selection
+    options: initialState.options,
+    selection: initialState.selection,
+    get optionSelection() {
+      const mapper = settings?.optionSelectionHandler || noop
+      return mapper(menu)
+    }
   })
 
   const menuApi = {
